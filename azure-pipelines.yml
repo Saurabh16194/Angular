@@ -22,9 +22,31 @@ steps:
   displayName: 'npm install and build'
 
 
+# Archieving Build Artifacts Files
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/dist'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+
+# Copy Build Atifacts from Local To Staging Repository
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'dist'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true 
+
+
+#  Publishing Artifacts
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'AngularArtifacts'
+    ArtifactName: 'symphony-summitai'
     publishLocation: 'Container'
