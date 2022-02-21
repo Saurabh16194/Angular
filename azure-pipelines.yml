@@ -10,16 +10,19 @@ pool:
   Default
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
 
-- script: |
-    npm install -g @angular/cli
+- script: 
     npm install
-    ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'Depedency Installation'
+
+#- task: Npm@1
+#  inputs:
+#    command: 'custom'
+#   customCommand: 'ng build --prod --verbose'
+
+- task: CmdLine@2
+  inputs:
+    script: 'npm install -g @angular/cli'
 
 
 # Archieving Build Artifacts Files
