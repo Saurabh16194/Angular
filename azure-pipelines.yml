@@ -32,6 +32,10 @@ steps:
     script: 'npm install -g @angular/cli'
 
 
+- script:  ng build --prod --output-hashing=all
+  displayName: "Building Solution"
+
+
 # Archieving Build Artifacts Files
 
 #- task: ArchiveFiles@2
