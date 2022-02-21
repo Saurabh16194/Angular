@@ -33,15 +33,6 @@ steps:
 #    replaceExistingArchive: true
 
 
-# Copy Build Atifacts from Local To Staging Repository
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'dist'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true 
-
 
 #  Publishing Artifacts
 
@@ -50,3 +41,5 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'symphony-summitai'
     publishLocation: 'Container'
+
+
